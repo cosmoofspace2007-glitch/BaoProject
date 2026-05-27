@@ -1,0 +1,609 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trang chủ Báo - Mẫu VnExpress</title>
+  <style>
+    :root {
+      --bg: #f5f5f5;
+      --surface: #fff;
+      --surface-strong: #f1f1f1;
+      --text: #222;
+      --muted: #6d6d6d;
+      --accent: #d30000;
+      --border: #e3e3e3;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      line-height: 1.5;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page-shell {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .site-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      width: 36px;
+      height: 36px;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      border-radius: 10px;
+      font-size: 0.95rem;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .main-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-left: 16px;
+      flex: 1;
+    }
+
+    .main-nav a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: background .2s, color .2s;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: var(--accent);
+      background: rgba(211, 0, 0, 0.08);
+    }
+
+    .search-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: var(--surface);
+      min-width: 240px;
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 0.95rem;
+      background: transparent;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .hero-card, .aside-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card img,
+    .aside-card img {
+      height: 320px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .hero-card-content,
+    .aside-card-content {
+      padding: 18px;
+    }
+
+    .hero-category {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+      background: rgba(211,0,0,.08);
+    }
+
+    .hero-title {
+      font-size: clamp(1.9rem, 2.4vw, 2.7rem);
+      margin: 0 0 14px;
+      line-height: 1.1;
+    }
+
+    .hero-summary {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .news-tabs {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+    }
+
+    .tabs-menu {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .tabs-menu button {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+      font-size: 0.94rem;
+    }
+
+    .tabs-menu button.active,
+    .tabs-menu button:hover {
+      background: rgba(211,0,0,.08);
+      color: var(--accent);
+    }
+
+    .tab-panel {
+      display: none;
+      gap: 14px;
+    }
+
+    .tab-panel.active {
+      display: grid;
+    }
+
+    .tab-item {
+      display: block;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .tab-item:last-child {
+      border-bottom: none;
+    }
+
+    .tab-item-title {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .section-headline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 24px 0 12px;
+    }
+
+    .section-headline h2 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    .section-headline a {
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .card img {
+      height: 180px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 16px;
+    }
+
+    .card-category {
+      color: var(--accent);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .card-title {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    .card-text {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .sidebar {
+      display: grid;
+      gap: 16px;
+    }
+
+    .sidebar .widget {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .widget h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+    }
+
+    .widget a {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .widget a:last-child {
+      margin-bottom: 0;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .site-footer {
+      padding: 24px 0 32px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .site-footer p,
+    .site-footer a {
+      margin: 0;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+
+    .button:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .cards-grid,
+      .footer-links {
+        grid-template-columns: 1fr;
+      }
+
+      .main-nav {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .site-header {
+        gap: 10px;
+      }
+
+      .search-bar {
+        flex: 1 1 100%;
+      }
+
+      .hero-card img,
+      .aside-card img {
+        height: 220px;
+      }
+
+      .tabs-menu {
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-logo">B</div>
+        <div class="brand-title">Báo</div>
+      </div>
+
+      <nav class="main-nav" aria-label="Danh mục chính">
+        <a href="#" class="active">Trang chủ</a>
+        <a href="#">Thời sự</a>
+        <a href="#">Thế giới</a>
+        <a href="#">Kinh doanh</a>
+        <a href="#">Giải trí</a>
+        <a href="#">Thể thao</a>
+        <a href="#">Sức khỏe</a>
+      </nav>
+
+      <div class="search-bar">
+        <span>🔍</span>
+        <input type="search" placeholder="Tìm kiếm tin tức..." aria-label="Tìm kiếm" />
+      </div>
+    </header>
+
+    <section class="hero-grid">
+      <article class="hero-card">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="Tin nổi bật" />
+        <div class="hero-card-content">
+          <span class="hero-category">Thời sự</span>
+          <h1 class="hero-title">Tin nổi bật hôm nay: Sự kiện nóng đang thu hút nhiều chú ý</h1>
+          <p class="hero-summary">Tổng hợp những thông tin quan trọng về chính sách, kinh tế và đời sống trong ngày được cập nhật nhanh chóng trên trang chủ.</p>
+          <div class="hero-meta">
+            <span>12 phút trước</span>
+            <span>2.3k bình luận</span>
+          </div>
+        </div>
+      </article>
+
+      <aside class="aside-card">
+        <div class="aside-card-content">
+          <div class="news-tabs">
+            <div class="tabs-menu" role="tablist">
+              <button class="tab-button active" data-target="tab-1" type="button">Mới nhất</button>
+              <button class="tab-button" data-target="tab-2" type="button">Xem nhiều</button>
+              <button class="tab-button" data-target="tab-3" type="button">Tin nóng</button>
+            </div>
+
+            <div id="tab-1" class="tab-panel active" role="tabpanel">
+              <a class="tab-item" href="#">
+                <span class="tab-item-title">Bộ Chính trị yêu cầu hoàn thành 200 km metro vào năm 2030</span>
+                <span>Thông tin mới nhất về tiến độ dự án giao thông đô thị.</span>
+              </a>
+              <a class="tab-item" href="#">
+                <span class="tab-item-title">Nắng nóng kéo dài, miền Bắc đối diện đợt cao điểm</span>
+                <span>Đợt nắng nóng ảnh hưởng trực tiếp đến sinh hoạt và giao thông.</span>
+              </a>
+              <a class="tab-item" href="#">
+                <span class="tab-item-title">Giá vàng giảm mạnh, thị trường chờ động thái mới</span>
+                <span>Những biến động giá trong phiên sáng ngày hôm nay.</span>
+              </a>
+            </div>
+
+            <div id="tab-2" class="tab-panel" role="tabpanel">
+              <a class="tab-item" href="#">
+                <span class="tab-item-title">Người dân bàn luận sôi nổi về kết quả điểm chuẩn đại học</span>
+              </a>
+              <a class="tab-item" href="#">
+                <span class="tab-item-title">Bình luận viên đánh giá chiến thắng quan trọng của đội tuyển quốc gia</span>
+              </a>
+              <a class="tab-item" href="#">
+                <span class="tab-item-title">Tình hình an ninh tại khu vực miền Trung thu hút đông đảo độc giả</span>
+              </a>
+            </div>
+
+            <div id="tab-3" class="tab-panel" role="tabpanel">
+              <a class="tab-item" href="#">
+                <span class="tab-item-title">Tin nóng: Đàm phán thương mại giữa hai nước đạt bước tiến mới</span>
+              </a>
+              <a class="tab-item" href="#">
+                <span class="tab-item-title">Cập nhật: Diễn biến vụ tai nạn giao thông tại cao tốc</span>
+              </a>
+              <a class="tab-item" href="#">
+                <span class="tab-item-title">Sự kiện thời trang đang khiến mạng xã hội xôn xao</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section-headline">
+      <h2>Bảng tin nổi bật</h2>
+      <a href="#">Xem tất cả</a>
+    </section>
+
+    <div class="cards-grid">
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Bài viết 1" />
+        <div class="card-body">
+          <div class="card-category">Thế giới</div>
+          <h3 class="card-title">Bản tin quốc tế: Diễn biến mới trong quan hệ giữa các cường quốc</h3>
+          <p class="card-text">Các nhà phân tích đánh giá tác động chính trị và kinh tế trong ngắn hạn.</p>
+        </div>
+      </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=900&q=80" alt="Bài viết 2" />
+        <div class="card-body">
+          <div class="card-category">Kinh doanh</div>
+          <h3 class="card-title">Cổ phiếu xanh trở lại khi thị trường chứng khoán ổn định</h3>
+          <p class="card-text">Các ngành công nghệ và tài chính dẫn đầu xu hướng phục hồi.</p>
+        </div>
+      </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80" alt="Bài viết 3" />
+        <div class="card-body">
+          <div class="card-category">Giải trí</div>
+          <h3 class="card-title">Sao Việt trên thảm đỏ: Những bộ cánh nổi bật tuần này</h3>
+          <p class="card-text">Những hình ảnh được chia sẻ nhiều nhất trên mạng xã hội.</p>
+        </div>
+      </article>
+    </div>
+
+    <section class="hero-grid" style="margin-top: 24px;">
+      <div>
+        <section class="section-headline">
+          <h2>Tin mới nhất</h2>
+          <a href="#">Xem thêm</a>
+        </section>
+
+        <div class="card" style="margin-bottom: 16px;">
+          <div class="card-body">
+            <div class="card-category">Đời sống</div>
+            <h3 class="card-title">Cách chăm sóc sức khỏe mùa hè để giữ năng lượng mỗi ngày</h3>
+            <p class="card-text">Chuyên gia đưa ra lời khuyên giúp bạn chống nóng và duy trì sức khỏe tốt.</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 16px;">
+          <div class="card-body">
+            <div class="card-category">Xe</div>
+            <h3 class="card-title">Xe điện mới ra mắt: Giá cả và công nghệ nổi bật</h3>
+            <p class="card-text">Làn sóng xe điện tiếp tục phát triển với nhiều lựa chọn dành cho người dùng.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="card-category">Sức khỏe</div>
+            <h3 class="card-title">Thực phẩm giúp tăng đề kháng cho mùa dịch</h3>
+            <p class="card-text">Danh sách thực phẩm lành mạnh dễ tìm trong mỗi bữa ăn.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="widget">
+          <h3>Chuyên mục nổi bật</h3>
+          <a href="#">Thời sự</a>
+          <a href="#">Kinh doanh</a>
+          <a href="#">Thể thao</a>
+          <a href="#">Giáo dục</a>
+          <a href="#">Du lịch</a>
+        </div>
+
+        <div class="widget">
+          <h3>Đọc nhiều</h3>
+          <a href="#">Cập nhật sự kiện nóng trong nước</a>
+          <a href="#">Biến động giá xăng dầu</a>
+          <a href="#">Tin tức bóng đá hôm nay</a>
+          <a href="#">Những xu hướng đầu tư mới</a>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <div>
+          <p><strong>Liên kết nhanh</strong></p>
+          <a href="#">Giới thiệu</a>
+          <a href="#">Liên hệ</a>
+          <a href="#">Quảng cáo</a>
+        </div>
+        <div>
+          <p><strong>Chuyên mục</strong></p>
+          <a href="#">Thời sự</a>
+          <a href="#">Thế giới</a>
+          <a href="#">Giải trí</a>
+        </div>
+        <div>
+          <p><strong>Thông tin</strong></p>
+          <a href="#">Điều khoản sử dụng</a>
+          <a href="#">Chính sách bảo mật</a>
+          <a href="#">RSS</a>
+        </div>
+      </div>
+      <p style="margin-top: 24px;">© 2026 Báo mẫu - Giao diện trang chủ tham khảo theo phong cách VnExpress.</p>
+    </footer>
+  </div>
+
+  <script>
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabPanels.forEach(panel => panel.classList.remove('active'));
+
+        button.classList.add('active');
+        document.getElementById(button.dataset.target).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

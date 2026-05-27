@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="brand">
+          <div class="brand-logo">A</div>
+          <div class="brand-title">Quản trị viên</div>
+        </div>
+        <div class="navbar">
+          <a href="../home/home.html">Trang chủ</a>
+          <a href="../auth/login.html">Đăng nhập</a>
+          <a href="../search/search.html">Tìm kiếm</a>
+        </div>
+      </div>
+      <div class="page-card">
+        <div class="section-title">
+          <h2>Dashboard Admin</h2>
+        </div>
+        <div id="admin-message"></div>
+        <div class="grid-3">
+          <div class="card card-body">
+            <h3>Dữ liệu phân tích</h3>
+            <div id="analytics-data"></div>
+          </div>
+          <div class="card card-body">
+            <h3>Người dùng</h3>
+            <ul id="users-list" class="related-list"></ul>
+          </div>
+          <div class="card card-body">
+            <h3>Sao lưu & quảng cáo</h3>
+            <button id="backup-button">Tạo bản sao lưu</button>
+            <div class="ad-banner" style="margin-top: 18px">
+              Vị trí quảng cáo hiển thị banner
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="../../js/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="brand">
+          <div class="brand-logo">B</div>
+          <div class="brand-title">Báo VNXpress</div>
+        </div>
+        <div class="navbar">
+          <a href="../home/home.html">Trang chủ</a>
+          <a href="register.html">Đăng ký</a>
+        </div>
+      </div>
+      <div class="page-card">
+        <div class="section-title">
+          <h2>Đăng nhập</h2>
+        </div>
+        <div id="login-feedback"></div>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Mật khẩu</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <button type="submit">Đăng nhập</button>
+        </form>
+        <p>Bạn chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+      </div>
+    </div>
+    <script type="module" src="../../js/auth.js"></script>
+  </body>
+</html>

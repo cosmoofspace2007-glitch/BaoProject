@@ -1,0 +1,329 @@
+﻿<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang bài báo</title>
+    <style>
+      :root {
+        --bg: #f4f4f4;
+        --surface: #ffffff;
+        --surface-alt: #fafafa;
+        --text: #222222;
+        --muted: #636363;
+        --accent: #d30000;
+        --border: #e6e6e6;
+        --radius: 16px;
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Roboto", "Segoe UI", Tahoma, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page-container {
+        width: min(1200px, 100%);
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .article-header {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .article-header img {
+        width: 100%;
+        height: 440px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .header-content {
+        padding: 24px 28px;
+      }
+
+      .header-category {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(211, 0, 0, 0.12);
+        color: var(--accent);
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+
+      .article-title {
+        margin: 0;
+        font-size: clamp(2rem, 2.75vw, 3rem);
+        line-height: 1.08;
+      }
+
+      .article-meta {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 0.95rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 1.75fr 1fr 0.9fr;
+        gap: 20px;
+        margin-top: 26px;
+      }
+
+      .content-area,
+      .related-area,
+      .ad-area {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 24px;
+      }
+
+      .content-area {
+        grid-column: 1 / 3;
+      }
+
+      .content-area h2 {
+        font-size: 1.25rem;
+        margin-top: 0;
+        margin-bottom: 16px;
+      }
+
+      .content-area p {
+        margin: 0 0 18px;
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 1rem;
+      }
+
+      .content-area blockquote {
+        margin: 0 0 20px;
+        padding: 18px 22px;
+        border-left: 4px solid var(--accent);
+        background: #fff6f6;
+        color: var(--text);
+        font-style: italic;
+      }
+
+      .related-area h3,
+      .ad-area h3 {
+        margin-top: 0;
+        margin-bottom: 18px;
+        font-size: 1.1rem;
+      }
+
+      .related-item,
+      .ad-item {
+        display: block;
+        margin-bottom: 18px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #ebeaea;
+      }
+
+      .related-item:last-child,
+      .ad-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .related-item-title,
+      .ad-item-title {
+        margin: 0 0 8px;
+        font-weight: 700;
+        font-size: 0.98rem;
+        color: var(--text);
+      }
+
+      .related-item-description,
+      .ad-item-description {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .ad-banner {
+        width: 100%;
+        min-height: 260px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #d30000 0%, #ff5f5f 100%);
+        color: white;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 24px;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      .ad-small {
+        display: grid;
+        gap: 14px;
+      }
+
+      .ad-small .ad-item {
+        background: var(--surface-alt);
+        padding: 18px;
+        border: 1px solid #edecec;
+        border-radius: 16px;
+      }
+
+      @media (max-width: 1100px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .content-area {
+          grid-column: auto;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .page-container {
+          padding: 16px;
+        }
+
+        .article-header img {
+          height: 260px;
+        }
+
+        .layout {
+          gap: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-container">
+      <section class="article-header">
+        <img
+          src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80"
+          alt="Ảnh bài báo"
+        />
+        <div class="header-content">
+          <span class="header-category">Chính trị</span>
+          <h1 class="article-title">
+            Tiêu đề bài báo: Sự kiện quan trọng và góc nhìn chuyên sâu
+          </h1>
+          <div class="article-meta">
+            <span>Ngày 27/05/2026</span>
+            <span>•</span>
+            <span>Tác giả: Nguyễn Văn A</span>
+            <span>•</span>
+            <span>2.1k lượt xem</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="layout">
+        <article class="content-area">
+          <h2>Giới thiệu</h2>
+          <p>
+            Đây là phần mở đầu bài báo, tóm tắt nội dung chính và những điểm nổi
+            bật cần lưu ý. Phần này sẽ giúp độc giả nắm nhanh thông tin trọng
+            tâm trước khi đọc kỹ toàn bài.
+          </p>
+
+          <p>
+            Nội dung chính của bài báo được trình bày đầy đủ theo cấu trúc chặt
+            chẽ, với các đoạn văn ngắn gọn, rõ ràng và dễ đọc. Mỗi đoạn sẽ tập
+            trung vào một ý chính, hướng đến trải nghiệm đọc phù hợp với giao
+            diện báo điện tử hiện đại.
+          </p>
+
+          <blockquote>
+            “Đây là trích dẫn quan trọng trong bài báo, làm nổi bật một phát
+            ngôn hoặc dữ liệu đáng chú ý.”
+          </blockquote>
+
+          <p>
+            Phần tiếp theo có thể bao gồm bình luận, số liệu, phân tích chuyên
+            sâu và dẫn chứng từ các nguồn tin uy tín. Trang báo nên giữ layout
+            sạch, ưu tiên hình ảnh minh họa và khoảng trắng để giảm mỏi mắt khi
+            đọc trên web.
+          </p>
+
+          <p>
+            Kết thúc bài báo bằng phần kết luận hoặc lời kêu gọi hành động, giúp
+            độc giả hiểu rõ thông điệp chính và gợi mở bước tiếp theo nếu cần.
+          </p>
+        </article>
+
+        <aside class="related-area">
+          <h3>Nội dung liên quan</h3>
+          <a class="related-item" href="#">
+            <h4 class="related-item-title">
+              Bài viết liên quan 1: Phân tích diễn biến mới
+            </h4>
+            <p class="related-item-description">
+              Tóm tắt ngắn gọn về bài viết liên quan để thu hút độc giả click
+              tiếp.
+            </p>
+          </a>
+          <a class="related-item" href="#">
+            <h4 class="related-item-title">
+              Bài viết liên quan 2: Góc nhìn chuyên gia
+            </h4>
+            <p class="related-item-description">
+              Sơ lược nội dung bài viết giúp độc giả tìm hiểu sâu hơn về chủ đề.
+            </p>
+          </a>
+          <a class="related-item" href="#">
+            <h4 class="related-item-title">
+              Bài viết liên quan 3: Thống kê mới nhất
+            </h4>
+            <p class="related-item-description">
+              Thông tin nhanh về số liệu và kết quả khảo sát liên quan.
+            </p>
+          </a>
+        </aside>
+
+        <aside class="ad-area">
+          <h3>Quảng cáo</h3>
+          <div class="ad-banner">
+            Quảng cáo lớn ở bên phải — đặt banner, khuyến mãi hoặc sản phẩm nổi
+            bật.
+          </div>
+          <div class="ad-small">
+            <div class="ad-item">
+              <h4 class="ad-item-title">Quảng cáo nhỏ 1</h4>
+              <p class="ad-item-description">
+                Thiết kế gọn cho thông tin sản phẩm hoặc dịch vụ.
+              </p>
+            </div>
+            <div class="ad-item">
+              <h4 class="ad-item-title">Quảng cáo nhỏ 2</h4>
+              <p class="ad-item-description">
+                Đặt thêm liên kết tiếp tục hoặc khuyến mãi hấp dẫn.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </body>
+</html>
