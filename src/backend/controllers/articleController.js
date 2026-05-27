@@ -57,6 +57,20 @@ const remove = (req, res) => {
   res.json({ message: "Bài viết đã được xóa." });
 };
 
+const trending = (req, res) => {
+  const trendingArticles = [...dbService.articles]
+    .sort((a, b) => (b.views || 0) - (a.views || 0))
+    .slice(0, 8);
+  res.json(trendingArticles);
+};
+
+const featured = (req, res) => {
+  const featuredArticles = dbService.articles.filter(
+    (article) => article.featured,
+  );
+  res.json(featuredArticles);
+};
+
 const search = (req, res) => {
   const q = String(req.query.q || "")
     .trim()
@@ -72,4 +86,13 @@ const search = (req, res) => {
   res.json(results);
 };
 
-module.exports = { list, getById, create, update, remove, search };
+module.exports = {
+  list,
+  getById,
+  create,
+  update,
+  remove,
+  search,
+  trending,
+  featured,
+};

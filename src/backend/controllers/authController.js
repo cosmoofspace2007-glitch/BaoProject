@@ -18,17 +18,15 @@ const register = (req, res) => {
 
   const user = dbService.createUser({ name, email, password, role });
   const token = jwtService.createToken(user);
-  res
-    .status(201)
-    .json({
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-      },
-      token,
-    });
+  res.status(201).json({
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    },
+    token,
+  });
 };
 
 const login = (req, res) => {
@@ -42,6 +40,9 @@ const login = (req, res) => {
   );
   if (!user) {
     return res.status(401).json({ message: "Email hoặc mật khẩu không đúng." });
+  }
+  if (user.isBanned) {
+    return res.status(403).json({ message: "Tài khoản của bạn đã bị khóa." });
   }
 
   const token = jwtService.createToken(user);

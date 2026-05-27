@@ -1,0 +1,551 @@
+KIẾN TRÚC WEBSITE BÁO ĐIỆN TỬ HOÀN CHỈNH
+1. CÔNG NGHỆ SỬ DỤNG
+Frontend:
+•	HTML
+•	CSS
+•	JavaScript
+Backend:
+•	C#
+•	ASP.NET Core Web API
+Database:
+•	SQL Server
+Authentication:
+•	JWT Token
+Realtime:
+•	SignalR
+Upload:
+•	Cloudinary hoặc Local Storage
+
+2. KIẾN TRÚC HỆ THỐNG
+Frontend
+↓
+JavaScript Fetch API
+↓
+Controller
+↓
+Service
+↓
+Repository
+↓
+Database
+
+3. PHÂN QUYỀN HỆ THỐNG
+1.	Guest
+2.	User
+3.	Author
+4.	Editor
+5.	Admin
+
+4. NGHIỆP VỤ GUEST (CHƯA ĐĂNG NHẬP)
+Chức năng:
+•	xem trang chủ
+•	xem bài viết
+•	xem bài nổi bật
+•	xem trending
+•	tìm kiếm bài viết
+•	xem category
+•	xem video
+•	xem comment
+•	xem tag
+•	xem tác giả bài viết
+Frontend:
+•	home/index.html
+•	article/article-detail.html
+•	article/trending.html
+•	article/featured.html
+•	category/category.html
+•	search/search.html
+•	video/videos.html
+JavaScript:
+•	homepage.js
+•	article.js
+•	category.js
+•	search.js
+•	trending.js
+•	featured.js
+•	video.js
+Backend:
+•	HomepageController.cs
+•	ArticleController.cs
+•	CategoryController.cs
+•	SearchController.cs
+•	VideoController.cs
+API:
+•	GET /api/homepage
+•	GET /api/articles
+•	GET /api/articles/{slug}
+•	GET /api/categories
+•	GET /api/search
+•	GET /api/videos
+
+5. NGHIỆP VỤ USER (ĐÃ ĐĂNG NHẬP)
+Chức năng:
+•	đăng nhập
+•	đăng ký
+•	đăng xuất
+•	comment bài viết
+•	reply comment
+•	like bài viết
+•	like comment
+•	bookmark bài viết
+•	theo dõi category
+•	nhận notification
+•	chỉnh sửa profile
+•	đổi avatar
+•	đổi tên
+•	đổi password
+Frontend:
+•	auth/login.html
+•	auth/register.html
+•	profile/profile.html
+•	profile/bookmarks.html
+•	profile/notifications.html
+•	profile/settings.html
+JavaScript:
+•	login.js
+•	register.js
+•	auth.js
+•	profile.js
+•	bookmark.js
+•	notification.js
+•	comment.js
+•	reply.js
+Backend:
+•	AuthController.cs
+•	ProfileController.cs
+•	BookmarkController.cs
+•	NotificationController.cs
+•	CommentController.cs
+•	ReplyController.cs
+API:
+•	POST /api/auth/login
+•	POST /api/auth/register
+•	POST /api/comments
+•	POST /api/replies
+•	POST /api/bookmarks
+•	GET /api/notifications
+•	PUT /api/profile
+
+6. NGHIỆP VỤ AUTHOR (NGƯỜI VIẾT BÀI)
+Chức năng:
+•	viết bài
+•	upload thumbnail
+•	upload ảnh nội dung
+•	lưu draft
+•	sửa bài của mình
+•	submit bài chờ duyệt
+•	xem trạng thái bài viết
+•	xem bài bị reject
+Frontend:
+•	writer/write-article.html
+•	writer/drafts.html
+•	writer/my-articles.html
+•	writer/pending-articles.html
+•	writer/rejected-articles.html
+JavaScript:
+•	writer.js
+•	upload.js
+•	drafts.js
+•	submit.js
+Backend:
+•	WriterController.cs
+•	UploadController.cs
+API:
+•	POST /api/articles
+•	PUT /api/articles
+•	POST /api/upload
+•	POST /api/articles/submit
+Trạng thái bài viết:
+•	Draft
+•	Pending
+•	Published
+•	Rejected
+
+7. NGHIỆP VỤ EDITOR (NGƯỜI DUYỆT)
+Chức năng:
+•	duyệt bài viết
+•	reject bài viết
+•	chỉnh sửa bài viết
+•	ghim bài viết
+•	đưa bài lên nổi bật
+•	quản lý comment
+•	ẩn comment vi phạm
+Frontend:
+•	editor/review-articles.html
+•	editor/featured-articles.html
+•	editor/rejected-articles.html
+•	editor/manage-comments.html
+JavaScript:
+•	editor.js
+•	publish.js
+•	reject.js
+•	featured.js
+Backend:
+•	EditorController.cs
+API:
+•	PUT /api/articles/publish
+•	PUT /api/articles/reject
+•	PUT /api/articles/featured
+•	DELETE /api/comments
+
+8. NGHIỆP VỤ ADMIN
+Chức năng:
+•	quản lý user
+•	quản lý bài viết
+•	quản lý comment
+•	ban user
+•	quản lý quảng cáo
+•	quản lý role
+•	xem dashboard
+•	xem analytics
+•	backup database
+•	restore database
+•	xem logs hệ thống
+Frontend:
+•	admin/dashboard.html
+•	admin/users.html
+•	admin/articles.html
+•	admin/comments.html
+•	admin/roles.html
+•	admin/analytics.html
+•	admin/ads.html
+•	admin/backups.html
+•	admin/logs.html
+JavaScript:
+•	dashboard.js
+•	users.js
+•	roles.js
+•	analytics.js
+•	ads.js
+•	backup.js
+•	logs.js
+Backend:
+•	AdminController.cs
+•	AnalyticsController.cs
+•	AdsController.cs
+•	BackupController.cs
+•	RoleController.cs
+•	LogController.cs
+API:
+•	GET /api/admin/users
+•	PUT /api/admin/ban
+•	GET /api/admin/statistics
+•	POST /api/ads
+•	PUT /api/roles
+•	POST /api/backup
+
+9. CẤU TRÚC FRONTEND
+Frontend/
+│
+├── pages/
+│ ├── home/
+│ ├── article/
+│ ├── auth/
+│ ├── profile/
+│ ├── writer/
+│ ├── editor/
+│ ├── admin/
+│ ├── search/
+│ └── video/
+│
+├── js/
+│ ├── auth/
+│ ├── article/
+│ ├── comment/
+│ ├── writer/
+│ ├── editor/
+│ ├── admin/
+│ ├── services/
+│ └── utils/
+│
+├── css/
+│ ├── main.css
+│ ├── layout.css
+│ ├── responsive.css
+│ ├── auth.css
+│ ├── article.css
+│ ├── writer.css
+│ ├── editor.css
+│ └── admin.css
+│
+├── components/
+│ ├── header.html
+│ ├── footer.html
+│ ├── navbar.html
+│ ├── sidebar.html
+│ ├── article-card.html
+│ ├── comment-box.html
+│ └── loading-spinner.html
+│
+├── assets/
+│ ├── images/
+│ ├── videos/
+│ ├── icons/
+│ └── fonts/
+│
+└── socket/
+└── realtime.js
+
+10. CẤU TRÚC BACKEND
+Backend/
+│
+├── Controllers/
+│
+├── Services/
+│
+├── Repositories/
+│
+├── Models/
+│
+├── DTOs/
+│
+├── Middleware/
+│
+├── Data/
+│
+├── Realtime/
+│
+├── Helpers/
+│
+├── Interfaces/
+│
+├── Logs/
+│
+├── wwwroot/
+│
+├── appsettings.json
+│
+└── Program.cs
+
+11. CONTROLLERS
+•	AuthController.cs
+•	UserController.cs
+•	ProfileController.cs
+•	ArticleController.cs
+•	CategoryController.cs
+•	CommentController.cs
+•	ReplyController.cs
+•	SearchController.cs
+•	BookmarkController.cs
+•	NotificationController.cs
+•	UploadController.cs
+•	VideoController.cs
+•	WriterController.cs
+•	EditorController.cs
+•	AdminController.cs
+•	AnalyticsController.cs
+•	AdsController.cs
+•	RoleController.cs
+•	BackupController.cs
+
+12. SERVICES
+•	AuthService.cs
+•	UserService.cs
+•	ProfileService.cs
+•	ArticleService.cs
+•	CategoryService.cs
+•	CommentService.cs
+•	ReplyService.cs
+•	SearchService.cs
+•	BookmarkService.cs
+•	NotificationService.cs
+•	UploadService.cs
+•	VideoService.cs
+•	WriterService.cs
+•	EditorService.cs
+•	AdminService.cs
+•	AnalyticsService.cs
+•	AdsService.cs
+•	RoleService.cs
+•	BackupService.cs
+
+13. REPOSITORIES
+•	UserRepository.cs
+•	ArticleRepository.cs
+•	CategoryRepository.cs
+•	CommentRepository.cs
+•	ReplyRepository.cs
+•	BookmarkRepository.cs
+•	NotificationRepository.cs
+•	VideoRepository.cs
+•	AdsRepository.cs
+•	RoleRepository.cs
+
+14. MODELS
+•	User.cs
+•	Role.cs
+•	Article.cs
+•	Category.cs
+•	Comment.cs
+•	Reply.cs
+•	Bookmark.cs
+•	Notification.cs
+•	Video.cs
+•	Tag.cs
+•	Ads.cs
+•	AuditLog.cs
+
+15. DTOs
+•	LoginDTO.cs
+•	RegisterDTO.cs
+•	ArticleDTO.cs
+•	CommentDTO.cs
+•	ReplyDTO.cs
+•	ProfileDTO.cs
+•	NotificationDTO.cs
+
+16. MIDDLEWARE
+JwtMiddleware.cs
+•	kiểm tra token
+RoleMiddleware.cs
+•	kiểm tra quyền
+ErrorMiddleware.cs
+•	xử lý lỗi
+LoggingMiddleware.cs
+•	ghi log hệ thống
+
+17. DATABASE
+Các bảng chính:
+•	Users
+•	Roles
+•	Articles
+•	Categories
+•	Comments
+•	Replies
+•	Tags
+•	Bookmarks
+•	Notifications
+•	Videos
+•	Ads
+•	AuditLogs
+
+18. QUAN HỆ THỰC THỂ
+User
+├── có → Role
+├── viết → Article
+├── comment → Comment
+├── reply → Reply
+├── bookmark → Article
+├── follow → Category
+└── nhận → Notification
+Article
+├── thuộc → Category
+├── có → Comment
+├── có → Tag
+└── có → Thumbnail
+Comment
+└── có → Reply
+Admin
+├── quản lý → User
+├── quản lý → Article
+├── quản lý → Ads
+└── quản lý → Roles
+
+19. FLOW LOGIN
+login.html
+↓
+login.js
+↓
+POST /api/auth/login
+↓
+AuthController
+↓
+AuthService
+↓
+UserRepository
+↓
+Database
+
+20. FLOW ĐĂNG BÀI
+write-article.html
+↓
+writer.js
+↓
+POST /api/articles
+↓
+ArticleController
+↓
+ArticleService
+↓
+ArticleRepository
+↓
+Database
+
+21. FLOW DUYỆT BÀI
+review-articles.html
+↓
+editor.js
+↓
+PUT /api/articles/publish
+↓
+EditorController
+↓
+EditorService
+↓
+ArticleRepository
+↓
+Database
+
+22. FLOW COMMENT
+comment.js
+↓
+POST /api/comments
+↓
+CommentController
+↓
+CommentService
+↓
+CommentRepository
+↓
+Database
+
+23. FLOW TỔNG THỂ WEBSITE
+PAGE
+↓
+JAVASCRIPT
+↓
+FETCH API
+↓
+CONTROLLER
+↓
+SERVICE
+↓
+REPOSITORY
+↓
+DATABASE
+
+24. TƯ DUY CODE ĐÚNG
+KHÔNG:
+•	code tất cả trong 1 file
+•	controller xử lý toàn bộ logic
+NÊN:
+•	1 chức năng = 1 module
+•	controller chỉ nhận request
+•	service xử lý nghiệp vụ
+•	repository xử lý database
+Ví dụ:
+•	auth.js
+•	article.js
+•	comment.js
+•	writer.js
+•	editor.js
+•	admin.js
+
+25. THỨ TỰ CODE HỢP LÝ
+Giai đoạn 1:
+•	UI HTML/CSS
+Giai đoạn 2:
+•	JavaScript Fetch API
+Giai đoạn 3:
+•	Login/Register/JWT
+Giai đoạn 4:
+•	CRUD Article
+Giai đoạn 5:
+•	Comment/Reply/Search
+Giai đoạn 6:
+•	Writer/Editor/Admin
+Giai đoạn 7:
+•	Notification/Realtime
+Giai đoạn 8:
+•	Analytics/Ads/Backup
+

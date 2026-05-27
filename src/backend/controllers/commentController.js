@@ -40,4 +40,14 @@ const reply = (req, res) => {
   res.status(201).json(reply);
 };
 
-module.exports = { list, create, reply };
+const like = (req, res) => {
+  const commentId = Number(req.params.id);
+  const comment = dbService.comments.find((c) => c.id === commentId);
+  if (!comment) {
+    return res.status(404).json({ message: "Bình luận không tồn tại." });
+  }
+  comment.likes = (comment.likes || 0) + 1;
+  res.json(comment);
+};
+
+module.exports = { list, create, reply, like };
