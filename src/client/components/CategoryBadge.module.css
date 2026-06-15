@@ -1,0 +1,27 @@
+.badge {
+   display: inline-block;
+   padding: 0.2rem 0.65rem;
+   border-radius: 3px;
+   font-size: 0.7rem;
+   font-weight: 700;
+   color: #fff;
+   text-transform: uppercase;
+   letter-spacing: 0.04em;
+   border: none;
+   cursor: pointer;
+   transition: all 0.2s ease;
+   white-space: nowrap;
+}
+
+.badge:hover {
+   opacity: 0.8;
+}
+
+.badge:focus-visible {
+   outline: 2px solid var(--gold-primary);
+   outline-offset: 2px;
+}
+
+.badge:active {
+   transform: scale(0.95);
+}
